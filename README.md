@@ -851,3 +851,91 @@ Interface types
 ===============
 
 > The bigger the interface, the weaker the abstraction.
+
+----
+
+Interface types
+===============
+
+* Go has small interfaces
+* Example: [package io](https://golang.org/pkg/io/)
+
+```
+type Reader interface {
+    Read([]byte) (n int, err error)
+}
+
+type Writer interface {
+    Write([]byte) (n int, err error)
+}
+
+type ReadWriter interface {
+    Reader
+    Writer
+}
+```
+
+----
+
+Interface types
+===============
+
+Can small interfaces be useful?
+
+* [Explore IO](https://github.com/miku/exploreio) workshop
+
+----
+
+TODO
+====
+
+* go tool
+* go build, install, test, vet
+* testing, benchmarks
+* concurrency
+* resources (ref/spec, docs, godoc)
+* dependency management
+* cool projects in Go (fogleman, k8s, docker, termui)
+
+----
+
+Cool Projects
+=============
+
+* [NES simulator](https://github.com/fogleman/nes)
+* https://github.com/gizak/termui
+* https://github.com/peco/peco
+* https://github.com/coreos/etcd
+* https://github.com/schachmat/wego
+* https://github.com/chrislusf/seaweedfs
+* https://github.com/minio/minio
+* http://nsq.io/
+
+----
+
+Web frameworks
+==============
+
+* gorilla
+* echo
+* ...
+
+----
+
+Installation
+============
+
+* https://golang.org/doc/install
+
+----
+
+Examples
+========
+
+* concurrent program
+* web service
+* chat server
+* docker storage plugin
+* docker api example
+
+----
