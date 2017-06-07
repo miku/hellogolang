@@ -261,7 +261,6 @@ complex64 complex128
 
 ----
 
-
 Only one loop construct
 =======================
 
@@ -296,9 +295,9 @@ package main
 import "fmt"
 
 func main() {
-    
+
     cities := []string{"Jena", "Weimar", "Erfurt"}
-    
+
     for i, city := range cities {
         fmt.Println(i, city)
     }
@@ -428,7 +427,6 @@ case 1:
 
 [Play](https://play.golang.org/p/2kM64T9iKB).
 
-
 ----
 
 Keywords to go (9)
@@ -437,7 +435,7 @@ Keywords to go (9)
 ```
                              interface    select
         defer         go     map          struct
-chan                  goto                
+chan                  goto
                                           type
 ```
 
@@ -456,7 +454,7 @@ func f() error {
     if rand.Float64() > 0.5 {
         fmt.Println("f failed")
     }
-    return nil    
+    return nil
 }
 
 func main() {
@@ -482,12 +480,11 @@ Keywords to go (8)
 ```
                              interface    select
                       go     map          struct
-chan                  goto                
+chan                  goto
                                           type
 ```
 
 ----
-
 
 Keywords to go (7)
 ==================
@@ -495,7 +492,7 @@ Keywords to go (7)
 ```
                              interface    select
                       go     map          struct
-chan                                  
+chan
                                           type
 ```
 
@@ -530,7 +527,7 @@ Keywords to go (6)
 ```
                              interface    select
                       go                  struct
-chan                                  
+chan
                                           type
 ```
 
@@ -554,9 +551,7 @@ Custom types
 
 * before we see compound types, let's look at something simpler
 
-
 ----
-
 
 Custom types
 ============
@@ -601,7 +596,6 @@ func main() {
 ```
 
 ----
-
 
 Compound types
 ==============
@@ -699,11 +693,31 @@ A few more types
 
 A few more builtin types:
 
+* array types (fixed size)
 * pointer types (Pointers reference a location in memory where a value is stored rather than the value itself)
 * function types (functions are first class objects)
-* array types (fixed size)
 * interface types
 * channel types
+
+----
+
+Arrays
+======
+
+* rarely used
+
+```
+package main
+
+import "fmt"
+
+func main() {
+    var v [3]int64
+    fmt.Println(v)
+}
+```
+
+[Play](https://play.golang.org/p/Yvggxjkg9-).
 
 ----
 
@@ -788,7 +802,7 @@ package main
 
 type Converter func(string) string
 
-func convert(value string, f Converter) string {
+func Convert(value string, f Converter) string {
 	return f(value)
 }
 
@@ -798,3 +812,42 @@ func main() {
 ```
 
 [Play](https://play.golang.org/p/UfgFjA71IP).
+
+----
+
+Interface types
+===============
+
+* set of methods
+* satisfied implicitly
+
+----
+
+Interface types
+===============
+
+```go
+package main
+
+type Starter interface {
+    Start() error
+}
+
+type Container struct {
+	ID string
+}
+
+func (c Container) Start() error {
+    // ...
+}
+...
+```
+
+[Play](https://play.golang.org/p/59Si3Cjr8I).
+
+----
+
+Interface types
+===============
+
+> The bigger the interface, the weaker the abstraction.
