@@ -1290,61 +1290,16 @@ Standard library
 * xml, json
 * archive
 
-
-
-<!-- SORTME -->
-
-
-TODO
-====
-
-* go tool
-* go build, install, test, vet
-* testing, benchmarks
-* concurrency
-* resources (ref/spec, docs, godoc)
-* dependency management
-* cool projects in Go (fogleman, k8s, docker, termui)
-
-
-----
-
-
-
-Assorted themes
-===============
-
-* standard library tour
-* tools
-* especially: go fmt, goimports
-
-----
-
-More to learn
-=============
-
-* ref/spec, efficient go, blog, tour
-* videos, gophercons, dotgo
-* books, tutorials
-
-----
-
-Workshop
-========
-
-* a simple concurrent program that fetches URLs
-* a web service, using net/http
-
 ----
 
 Cool Projects
 =============
 
+* docker, k8s
 * [NES simulator](https://github.com/fogleman/nes)
 * https://github.com/gizak/termui
 * https://github.com/peco/peco
 * https://github.com/coreos/etcd
-* https://github.com/schachmat/wego
 * https://github.com/chrislusf/seaweedfs
 * https://github.com/minio/minio
 * http://nsq.io/
@@ -1360,20 +1315,12 @@ Web frameworks
 
 ----
 
-Installation
-============
+More to learn
+=============
 
-* https://golang.org/doc/install
-
-----
-
-Examples
-========
-
-* request a web page
-* request a list of web pages
-* concurrently request a list of web pages
-* simple web service
+* ref/spec, efficient go, blog, tour
+* videos, gophercons, dotgo
+* books, tutorials
 
 ----
 
@@ -1436,3 +1383,43 @@ Go vs Python
 
 * https://gist.github.com/miku/f7ac5873f6a29a096fde
 
+----
+
+Workshop
+========
+
+* http://localhost:6060/doc/install
+* http://localhost:6060/doc/code.html
+
+----
+
+Workshop Examples
+=================
+
+* hello world  (1)
+* request a web page (2)
+* request a list of web pages (3)
+* concurrently request a list of web pages (4)
+* simple web service (5)
+
+----
+
+Workshop (1)
+============
+
+Set `$GOPATH` to `~/go`.
+
+```
+$ mkdir $GOPATH/src/github.com/user/hello
+```
+
+Create a file called `hello.go` - insert code, save, run.
+
+----
+
+Workshop (2)
+============
+
+
+
+----
