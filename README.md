@@ -199,6 +199,13 @@ func main() {
 
 ----
 
+Visibility
+==========
+
+* Lowercase private, uppercase public
+
+----
+
 Every type has a zero value
 ===========================
 
@@ -765,7 +772,7 @@ You will see (use) pointer receivers on struct methods:
 func (cli *Client) ContainerList ...
 ```
 
-* required, if a method mutates the compound type
+* required, if a method mutates values
 * even, if it is just a single method, for consistency, all methods should use a pointer receiver
 
 ----
@@ -811,6 +818,17 @@ func main() {
 ```
 
 [Play](https://play.golang.org/p/UfgFjA71IP).
+
+----
+
+Function types
+==============
+
+```
+type Converter func(string) string
+```
+
+Any function with the signature `func(string) string` will implement Converter.
 
 ----
 
@@ -888,14 +906,9 @@ Can small interfaces be useful?
 IO
 ==
 
-> ... satisfied implictly. But that's actually not the most important thing
-about Go's interfaces. The really most important thing is the culture around
-them that's captured by this proverb, which is that the smaller the interface
-is the more useful it is.
+> ... satisfied implictly. But that's actually not the most important thing about Go's interfaces. The really most important thing is the culture around them that's captured by this proverb, which is that the smaller the interface is the more useful it is.
 
-> io.Reader, io.Writer and the empty interface are the three most important
-interfaces in the entire ecosystem, and they have an average of 2/3 of a
-method.
+> io.Reader, io.Writer and the empty interface are the three most important interfaces in the entire ecosystem, and they have an average of 2/3 of a method.
 
 ----
 
@@ -981,20 +994,6 @@ Interface advantages
 
 ----
 
-TODO
-====
-
-* go tool
-* go build, install, test, vet
-* testing, benchmarks
-* concurrency
-* resources (ref/spec, docs, godoc)
-* dependency management
-* cool projects in Go (fogleman, k8s, docker, termui)
-
-----
-
-<!-- SORTME -->
 
 Concurrency
 ===========
@@ -1003,6 +1002,14 @@ Concurrency
 * avoids explicit locks
 
 > Do not communicate by sharing memory; instead, share memory by communicating.
+
+----
+
+CSP
+===
+
+> In Hoare's CSP language, processes communicate by sending or receiving values from named unbuffered channels. Since the channels are unbuffered, the send operation blocks until the value has been transferred to a receiver, thus providing a mechanism for synchronization.
+
 
 ----
 
@@ -1138,14 +1145,6 @@ func main() {
 
 ----
 
-CSP
-===
-
-> In Hoare's CSP language, processes communicate by sending or receiving values
-from named unbuffered channels. Since the channels are unbuffered, the send
-operation blocks until the value has been transferred to a receiver, thus
-providing a mechanism for synchronization.
-
 Channels
 ========
 
@@ -1203,6 +1202,114 @@ func main() {
 [Play](https://play.golang.org/p/ZagSjRpAPZ).
 
 ----
+
+Tooling
+=======
+
+Commonly referred to a the Go tool. It runs code (compiles to a temporary file):
+
+```
+$ go run main.go
+```
+
+----
+
+Tooling
+=======
+
+Before you build code:
+
+```
+$ go fmt main.go
+```
+
+Or use: `goimports` - you favorite editor will have suitable plugins.
+
+----
+
+
+Tooling
+=======
+
+Build binary:
+
+```
+$ go build -o prog main.go
+```
+
+Cross complilation is easy.
+
+----
+
+
+Tooling
+=======
+
+Testing:
+
+```
+$ go test ./...
+```
+
+Testing and Benchmark helpers included.
+
+----
+
+Tooling
+=======
+
+Testing:
+
+```
+$ go vet ./...
+```
+
+Testing and Benchmark helpers included.
+
+----
+
+Tooling
+=======
+
+Get additional libraries:
+
+```
+$ go get github.com/fatih/structs
+```
+
+Dependency management is not great yet.
+
+----
+
+Standard library
+================
+
+* net/http
+* flag
+* io
+* xml, json
+* archive
+
+
+
+<!-- SORTME -->
+
+
+TODO
+====
+
+* go tool
+* go build, install, test, vet
+* testing, benchmarks
+* concurrency
+* resources (ref/spec, docs, godoc)
+* dependency management
+* cool projects in Go (fogleman, k8s, docker, termui)
+
+
+----
+
+
 
 Assorted themes
 ===============
@@ -1263,11 +1370,10 @@ Installation
 Examples
 ========
 
-* concurrent program
-* web service
-* chat server
-* docker storage plugin
-* docker api example
+* request a web page
+* request a list of web pages
+* concurrently request a list of web pages
+* simple web service
 
 ----
 
@@ -1305,10 +1411,28 @@ sha256:a298d5ca31220b888b5 ...
 sha256:a41a7446062d197dd4b ...
 ```
 
-
 ----
 
 Docker Volume API
 =================
 
 ![](images/ipfs-vol.png)
+
+----
+
+Docker Plugins API
+==================
+
+* https://docs.docker.com/engine/extend/plugin_api/
+
+Example:
+
+* https://github.com/vieux/docker-volume-sshfs
+
+----
+
+Go vs Python
+============
+
+* https://gist.github.com/miku/f7ac5873f6a29a096fde
+
