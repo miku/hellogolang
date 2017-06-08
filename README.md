@@ -1106,6 +1106,8 @@ func main() {
 }
 ```
 
+<!-- show deadlocks -->
+
 ----
 
 Concurrency: channels
@@ -1164,6 +1166,58 @@ func main() {
 ```
 
 ![Play](https://play.golang.org/p/RxBF5YGwdP).
+
+----
+
+Select statement
+================
+
+* select statement is similar to a switch but works with channels
+
+> The select statement lets a goroutine wait on multiple communication
+operations. A select blocks until one of its cases can run, then it executes
+that case.
+
+----
+
+Select statement
+================
+
+```
+func main() {
+	ch := make(chan int)
+	go func() {
+		select {
+		case <-time.After(1 * time.Second):
+			log.Fatal("timeout")
+		case v := <-ch:
+			log.Println(v)
+			return
+		}
+	}()
+	time.Sleep(1100 * time.Millisecond)
+	ch <- 42
+	time.Sleep(1 * time.Second)
+}
+```
+
+[Play](https://play.golang.org/p/ZagSjRpAPZ).
+
+----
+
+Assorted themes
+===============
+
+* standard library tour
+* tools
+
+----
+
+Workshop
+========
+
+* a simple concurrent program that fetches URLs
+* a web service, using net/http
 
 ----
 
