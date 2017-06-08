@@ -1213,6 +1213,15 @@ Assorted themes
 
 ----
 
+More to learn
+=============
+
+* ref/spec, efficient go, blog, tour
+* videos, gophercons, dotgo
+* books, tutorials
+
+----
+
 Workshop
 ========
 
