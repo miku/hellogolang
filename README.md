@@ -1420,6 +1420,25 @@ Create a file called `hello.go` - insert code, save, run.
 Workshop (2)
 ============
 
-
+* request a web page with `http.Get`
 
 ----
+
+Workshop (3)
+============
+
+* request a list of web pages
+
+----
+
+Workshop (4)
+============
+
+* concurrently request a list of web pages
+
+----
+
+Workshop (5)
+============
+
+* various servers
