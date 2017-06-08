@@ -17,7 +17,7 @@ About me
 * Gopher since 2013
 * Programmer at [Leipzig University Library](https://www.ub.uni-leipzig.de/ueber-uns/stellenausschreibung-ausbildung-praktikum/aktuelle-stellenausschreibungen/)
 * Co-Author of [Getting Started with Python Data Analysis](https://www.amazon.com/gp/product/1785285114)
-* Consultant on data processing themes
+* Consultant
 * Trainer at [Python Academy](http://www.python-academy.com/)
 
 ----
@@ -25,7 +25,7 @@ About me
 About me
 ========
 
-A few open source projects: [esbulk](https://github.com/miku/esbulk), [solrbulk](https://github.com/miku/solrbulk), [microblob](https://github.com/miku/microblob), [gluish](https://github.com/miku/gluish), [metha](https://github.com/miku/metha), [marctools](https://github.com/ubleipzig/marctools).
+Open source projects: [esbulk](https://github.com/miku/esbulk), [solrbulk](https://github.com/miku/solrbulk), [microblob](https://github.com/miku/microblob), [gluish](https://github.com/miku/gluish), [metha](https://github.com/miku/metha), [marctools](https://github.com/ubleipzig/marctools).
 
 Presentations at [LPUG](https://twitter.com/lpyug) about [pandas](http://pandas.pydata.org/), [luigi](https://github.com/spotify/luigi), [neural nets](https://github.com/miku/nntour).
 
@@ -53,7 +53,6 @@ Then: hands-on, if you want:
 
 - Get Go installed
 - Write a simple (web service | concurrent program) in Go
-- Write a Docker storage plugin
 
 ----
 
@@ -1271,3 +1270,45 @@ Examples
 * docker api example
 
 ----
+
+Docker API
+==========
+
+List containers, create or remove them:
+
+* https://gist.github.com/miku/db09463fb5637a987e3f6dce8f2e839d
+
+----
+
+Docker API
+==========
+
+```
+$ go run create.go
+2017/06/08 15:31:47 Pulling from library/alpine
+2017/06/08 15:31:47 Digest: sha256:0b94d1d1b5e ..
+2017/06/08 15:31:47 Status: Image is up to date ..
+2017/06/08 15:31:47 created: 0b2a66483 ...
+
+hello world
+2017/06/08 15:31:49 removing: 0b2a66483067c520b761 ...
+```
+
+----
+
+Docker API
+==========
+
+```
+$ go run list.go
+sha256:a298d5ca31220b888b5 ...
+sha256:a41a7446062d197dd4b ...
+```
+
+
+----
+
+Docker Volume API
+=================
+
+![](images/ipfs-vol.png)
