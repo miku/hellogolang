@@ -22,7 +22,7 @@ func detect(link string, out chan string) {
 		out <- fmt.Sprintf("error reading body %s: %s", link, err)
 		return
 	}
-	detected := strings.Contains(string(b), "Trump")
+	detected := strings.Contains(string(b), "Donald Trump")
 	if detected {
 		out <- fmt.Sprintf("%s 👱", link)
 	} else {
