@@ -1007,6 +1007,79 @@ Concurrency
 
 ----
 
+Concurrency
+===========
+
+Three elements:
+
+* goroutines
+* channels
+* select statement
+
+----
+
+Concurrency: goroutines
+=======================
+
+* the go keyword start a function in a separate lightweigth thread
+
+----
+
+Concurrency: goroutines
+=======================
+
+```
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func f() {
+	time.Sleep(1 * time.Second)
+	fmt.Println("f")
+}
+
+func main() {
+	go f()
+	fmt.Println("main")
+	time.Sleep(2 * time.Second)
+	fmt.Println("main")
+}
+```
+
+[Play](https://play.golang.org/p/MvhjfOjgzi).
+
+----
+
+Concurrency: goroutines
+=======================
+
+* easy to start (many)
+
+```
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	N := 1000
+	for i := 0; i < N; i++ {
+		go func() {
+			x := 0
+			x++
+		}()
+	}
+	fmt.Println("done")
+}
+```
+
+[Play](https://play.golang.org/p/ZEYD2JVP5p).
+
+
 CSP
 ===
 
