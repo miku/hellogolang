@@ -967,6 +967,21 @@ func main() {
 
 ----
 
+Interface advantages
+====================
+
+* no dependence between interface and implementation
+* easy testing
+* avoids overdesign, rigid hierarchy of inheritance-based OO
+
+> The source of all generality in the Go language. 
+
+* https://talks.golang.org/2014/research.slide#20
+
+(Requires some boilerplate, e.g. sort.Interface)
+
+----
+
 TODO
 ====
 
@@ -981,6 +996,24 @@ TODO
 ----
 
 <!-- SORTME -->
+
+Concurrency
+===========
+
+* based on Communicating Sequential Processes (CSP), 1978
+* avoids explicit locks
+
+> Do not communicate by sharing memory; instead, share memory by communicating.
+
+----
+
+CSP
+===
+
+> In Hoare's CSP language, processes communicate by sending or receiving values
+from named unbuffered channels. Since the channels are unbuffered, the send
+operation blocks until the value has been transferred to a receiver, thus
+providing a mechanism for synchronization.
 
 Channels
 ========
