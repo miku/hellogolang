@@ -1077,8 +1077,65 @@ func main() {
 }
 ```
 
-[Play](https://play.golang.org/p/ZEYD2JVP5p).
+[Play](https://play.golang.org/p/8m61pgB3Kt).
 
+----
+
+Concurrency: channels
+=====================
+
+* How to communicate between goroutines: enter channels.
+* Channels: typed conduits for synchronisation and communication
+
+----
+
+Concurrency: channels
+=====================
+
+```
+package main
+
+import "fmt"
+
+func main() {
+	ch := make(chan string)
+	go func() {
+		ch <- "Hello"
+	}()
+	fmt.Println(<-ch)
+}
+```
+
+----
+
+Concurrency: channels
+=====================
+
+```
+package main
+
+// ...
+
+func a(ch chan string) {
+	for msg := range ch {
+		fmt.Println(msg)
+	}
+}
+
+func main() {
+	ch := make(chan string)
+	go a(ch)
+	ch <- "Hello"
+	ch <- "World"
+	close(ch)
+	time.Sleep(1 * time.Second)
+}
+```
+
+[Play](https://play.golang.org/p/i6CM04Pe2m).
+
+
+----
 
 CSP
 ===
