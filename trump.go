@@ -18,12 +18,12 @@ func detect(link string, out chan string) {
 		return
 	}
 	b, err := ioutil.ReadAll(resp.Body)
+	resp.Body.Close()
 	if err != nil {
 		out <- fmt.Sprintf("error reading body %s: %s", link, err)
 		return
 	}
-	detected := strings.Contains(string(b), "Donald Trump")
-	if detected {
+	if strings.Contains(string(b), "Donald Trump") {
 		out <- fmt.Sprintf("%s 👱", link)
 	} else {
 		out <- fmt.Sprintf("%s", link)
