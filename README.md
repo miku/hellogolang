@@ -1210,6 +1210,7 @@ Assorted themes
 
 * standard library tour
 * tools
+* especially: go fmt, goimports
 
 ----
 
