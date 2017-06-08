@@ -886,6 +886,87 @@ Can small interfaces be useful?
 
 ----
 
+IO
+==
+
+> ... satisfied implictly. But that's actually not the most important thing
+about Go's interfaces. The really most important thing is the culture around
+them that's captured by this proverb, which is that the smaller the interface
+is the more useful it is.
+
+> io.Reader, io.Writer and the empty interface are the three most important
+interfaces in the entire ecosystem, and they have an average of 2/3 of a
+method.
+
+----
+
+Empty interface
+===============
+
+```
+package main
+
+import "fmt"
+
+func main() {
+    var x interface{}
+    x = 5
+    fmt.Printf("%v, %T\n", x, x)
+    x = "Hello"
+    fmt.Printf("%v, %T\n", x, x)
+}
+```
+
+----
+
+Type assertion
+==============
+
+```
+package main
+
+import "fmt"
+
+func IsString(v interface{}) bool {
+    _, ok := v.(string)
+    return ok
+}
+
+func main() {
+    fmt.Println(IsString(23))
+    fmt.Println(IsString("23"))
+}
+```
+
+[Play](https://play.golang.org/p/itZAM0UgCe).
+
+----
+
+Polymorphism
+============
+
+* via interfaces
+* no explicit declaration
+
+```
+package main
+
+import "fmt"
+
+type Number struct{ x int }
+
+func (n Number) String() string { return fmt.Sprintf("<Number %d>", n.x) }
+
+func main() {
+    five := Number{5}
+    fmt.Println(five)
+}
+```
+
+[Play](https://play.golang.org/p/UbhGsZqKUz).
+
+----
+
 TODO
 ====
 
@@ -896,6 +977,30 @@ TODO
 * resources (ref/spec, docs, godoc)
 * dependency management
 * cool projects in Go (fogleman, k8s, docker, termui)
+
+----
+
+<!-- SORTME -->
+
+Channels
+========
+
+```
+package main
+
+import "fmt"
+
+func main() {
+    c := make(chan string)
+    go func() {
+        c <- "Hello"
+        c <- "World"
+    }()
+    fmt.Println(<-c, <-c)
+}
+```
+
+![Play](https://play.golang.org/p/RxBF5YGwdP).
 
 ----
 
