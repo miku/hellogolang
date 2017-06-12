@@ -1,3 +1,4 @@
+// fetch retrieves the content of a URL, similar to curl.
 package main
 
 import (
@@ -8,7 +9,7 @@ import (
 )
 
 func main() {
-	resp, err := http.Get("http://localhost:6060/")
+	resp, err := http.Get("http://heise.de")
 	if err != nil {
 		log.Fatalf("fetch: %v", err)
 	}

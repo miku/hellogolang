@@ -1,3 +1,5 @@
+// server3 prints out information about the request.
+// Try: $ curl -H "X-First-Name: Joe" localhost:8000/xyz
 package main
 
 import (
@@ -8,7 +10,9 @@ import (
 
 func main() {
 	http.HandleFunc("/", handler)
-	log.Fatal(http.ListenAndServe("localhost:8000", nil))
+	if err := http.ListenAndServe("localhost:8000", nil); err != nil {
+		log.Fatal(err)
+	}
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
@@ -25,5 +29,3 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Form[%q] = %q\n", k, v)
 	}
 }
-
-// curl -H "X-First-Name: Joe" localhost:8000/asd

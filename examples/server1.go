@@ -1,3 +1,4 @@
+// server1 serves a constant string.
 package main
 
 import (
@@ -7,10 +8,13 @@ import (
 )
 
 func main() {
+	// Functions are first class objects.
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		io.WriteString(w, "Hello world!")
 	})
-	log.Fatal(http.ListenAndServe("localhost:8000", nil))
+	if err:= http.ListenAndServe("localhost:8000", nil); err != nil {
+		log.Fatal(err)
+	}
 }
 
 // func handler(w http.ResponseWriter, r *http.Request) {

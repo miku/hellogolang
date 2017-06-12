@@ -1,3 +1,4 @@
+// trump detects "Donald Trump" in newspaper frontpages.
 package main
 
 import (
@@ -6,6 +7,8 @@ import (
 	"net/http"
 	"strings"
 )
+
+const trump = "👱"
 
 func detect(link string, out chan string) {
 	resp, err := http.Get(link)
@@ -20,7 +23,7 @@ func detect(link string, out chan string) {
 		return
 	}
 	if strings.Contains(string(b), "Donald Trump") {
-		out <- fmt.Sprintf("%s 👱  x %v", link, strings.Count(string(b), "Donald Trump"))
+		out <- fmt.Sprintf("%s %s  x %v", link, trump, strings.Count(string(b), "Donald Trump"))
 	} else {
 		out <- fmt.Sprintf("%s", link)
 	}
@@ -35,13 +38,14 @@ func main() {
 		"http://www.lvz.de",
 		"http://www.l-iz.de",
 		"http://www.zeit.de",
+		"http://www.spiegel.de",
+		"http://www.lemonde.fr",
+		"https://www.nytimes.com/",
 	}
 	ch := make(chan string)
 
 	for _, link := range links {
 		go detect(link, ch)
-		// go detect(link, ch)
-		// fmt.Println(<-ch)
 	}
 
 	for i := 0; i < len(links); i++ {

@@ -1,3 +1,4 @@
+// fetchall 
 package main
 
 import (
@@ -19,6 +20,10 @@ func main() {
 		"http://www.lvz.de",
 		"http://www.l-iz.de",
 		"http://www.zeit.de",
+		"http://www.fr.de",
+		"http://spiegel.de",
+		"http://www.tagesspiegel.de",
+		"http://news.google.com",
 	}
 
 	for _, url := range urls {
@@ -28,7 +33,7 @@ func main() {
 	for range urls {
 		fmt.Println(<-ch)
 	}
-	fmt.Printf("%.2f elapsed\n", time.Since(start).Seconds())
+	fmt.Printf("%0.4f\n", time.Since(start).Seconds())
 }
 
 func fetch(url string, ch chan<- string) {
@@ -43,6 +48,5 @@ func fetch(url string, ch chan<- string) {
 		ch <- fmt.Sprintf("while reading: %s: %v", url, err)
 		return
 	}
-	secs := time.Since(start).Seconds()
-	ch <- fmt.Sprintf("%.2fs  %7d  %s", secs, nbytes, url)
+	ch <- fmt.Sprintf("%0.4f\t%7d\t%s", time.Since(start).Seconds(), nbytes, url)
 }

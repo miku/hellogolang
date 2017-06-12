@@ -375,8 +375,8 @@ chan                  goto                switch
 
 ----
 
-Braching with switch, case and default
-======================================
+Branching with switch, case and default
+=======================================
 
 ```
 package main
@@ -450,7 +450,7 @@ chan                  goto
 Defer
 =====
 
-* Defer is wonderful.
+* Defer can safe lots of code.
 
 ```
 package main
@@ -603,8 +603,8 @@ func main() {
 
 ----
 
-Compound types
-==============
+Compound types: structs
+=======================
 
 ```
 package main
@@ -700,10 +700,10 @@ A few more types
 A few more builtin types:
 
 * array types (fixed size)
-* pointer types (Pointers reference a location in memory where a value is stored rather than the value itself)
+* pointer types (pointers reference a location in memory where a value is stored rather than the value itself)
 * function types (functions are first class objects)
-* interface types
-* channel types
+* interface types (defined by a set of methods)
+* channel types (typed conduits for communication and synchronisation)
 
 ----
 
@@ -773,7 +773,8 @@ func (cli *Client) ContainerList ...
 ```
 
 * required, if a method mutates values
-* even, if it is just a single method, for consistency, all methods should use a pointer receiver
+* even if just a single method requires a pointer receiver, for consistency,
+all methods should use one
 
 ----
 
@@ -828,7 +829,9 @@ Function types
 type Converter func(string) string
 ```
 
-Any function with the signature `func(string) string` will implement Converter.
+Any function with the signature `func(string) string` will work:
+
+[Play](https://play.golang.org/p/XnhHGNSzSM).
 
 ----
 
@@ -868,6 +871,8 @@ Interface types
 ===============
 
 > The bigger the interface, the weaker the abstraction.
+
+* https://youtu.be/PAAkCSZUG1c?t=5m18s - *Go Proverbs, 2015*
 
 ----
 
@@ -1008,7 +1013,7 @@ Concurrency
 CSP
 ===
 
-> In Hoare's CSP language, processes communicate by sending or receiving values from named unbuffered channels. Since the channels are unbuffered, the send operation blocks until the value has been transferred to a receiver, thus providing a mechanism for synchronization.
+> In Hoare's CSP language, *processes communicate* by sending or receiving values from named unbuffered channels. Since the channels are unbuffered, the send operation blocks until the value has been transferred to a receiver, thus providing a *mechanism for synchronization*.
 
 
 ----
@@ -1090,8 +1095,8 @@ func main() {
 Concurrency: channels
 =====================
 
-* How to communicate between goroutines: enter channels.
-* Channels: typed conduits for synchronisation and communication
+* How to communicate between goroutines? Enter channels.
+* Channels: typed conduits for synchronisation and communication.
 
 ----
 
@@ -1206,7 +1211,7 @@ func main() {
 Tooling
 =======
 
-Commonly referred to a the Go tool. It runs code (compiles to a temporary file):
+Commonly referred to a the *Go tool*. It *runs* code (compiles to a temporary file):
 
 ```
 $ go run main.go
@@ -1217,13 +1222,14 @@ $ go run main.go
 Tooling
 =======
 
-Before you build code:
+Before you build code, you should format Go code:
 
 ```
 $ go fmt main.go
 ```
 
-Or use: `goimports` - you favorite editor will have suitable plugins.
+Or use: [goimports](https://godoc.org/golang.org/x/tools/cmd/goimports) - you
+favorite editor will have a suitable plugin.
 
 ----
 
@@ -1231,7 +1237,7 @@ Or use: `goimports` - you favorite editor will have suitable plugins.
 Tooling
 =======
 
-Build binary:
+Build statically-linked binary:
 
 ```
 $ go build -o prog main.go
@@ -1289,6 +1295,8 @@ Standard library
 * io
 * xml, json
 * archive
+* encodings
+* much more ...
 
 ----
 
@@ -1309,18 +1317,26 @@ Cool Projects
 Web frameworks
 ==============
 
-* gorilla
-* echo
-* ...
+* [gorilla](http://www.gorillatoolkit.org/)
+* [echo](https://github.com/labstack/echo)
+* [revel](https://revel.github.io/)
+* many more ...
 
 ----
 
 More to learn
 =============
 
-* ref/spec, efficient go, blog, tour
-* videos, gophercons, dotgo
-* books, tutorials
+* [ref/spec](https://golang.org/ref/spec), [effective go](https://golang.org/doc/effective_go.html), [blog](https://golang.org/blog/), [tour](https://tour.golang.org/)
+* videos, gophercons, [dotgo](https://www.dotgo.eu/), books, tutorials -
+[wiki](https://github.com/golang/go/wiki)
+
+----
+
+Additional material
+===================
+
+A tiny bit about Docker.
 
 ----
 
@@ -1396,11 +1412,10 @@ Workshop
 Workshop Examples
 =================
 
-* hello world  (1)
-* request a web page (2)
-* request a list of web pages (3)
-* concurrently request a list of web pages (4)
-* simple web service (5)
+* hello world (hello)
+* request a web page (fetch)
+* concurrently request a list of web pages (fetchall)
+* simple web service (server1, server2, server3)
 
 ----
 
@@ -1427,18 +1442,19 @@ Workshop (2)
 Workshop (3)
 ============
 
-* request a list of web pages
+* concurrently request a list of web pages
 
 ----
 
 Workshop (4)
 ============
 
-* concurrently request a list of web pages
+* various servers
 
 ----
 
-Workshop (5)
-============
+Thanks
+======
 
-* various servers
+For dropping by and [@dataduke](https://twitter.com/dataduke) and
+[@jenadevs](https://twitter.com/jenadevs) for organizing this meetup.
