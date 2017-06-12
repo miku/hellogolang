@@ -8,10 +8,6 @@ import (
 )
 
 func detect(link string, out chan string) {
-	// start := time.Now()
-	// defer func() {
-	// 	fmt.Printf("%s took %s\n", link, time.Since(start))
-	// }()
 	resp, err := http.Get(link)
 	if err != nil {
 		out <- fmt.Sprintf("could not fetch %s: %s", link, err)
@@ -24,7 +20,7 @@ func detect(link string, out chan string) {
 		return
 	}
 	if strings.Contains(string(b), "Donald Trump") {
-		out <- fmt.Sprintf("%s 👱", link)
+		out <- fmt.Sprintf("%s 👱  x %v", link, strings.Count(string(b), "Donald Trump"))
 	} else {
 		out <- fmt.Sprintf("%s", link)
 	}
@@ -43,12 +39,12 @@ func main() {
 	ch := make(chan string)
 
 	for _, link := range links {
-		// go detect(link, ch)
 		go detect(link, ch)
-		fmt.Println(<-ch)
+		// go detect(link, ch)
+		// fmt.Println(<-ch)
 	}
 
-	// for i := 0; i < len(links); i++ {
-	// 	fmt.Println(<-ch)
-	// }
+	for i := 0; i < len(links); i++ {
+		fmt.Println(<-ch)
+	}
 }
